@@ -13,6 +13,10 @@ train = pd.read_csv('train.csv')
 """
 	Encode String
 """
+train.set_index('PassengerId', inplace = True)
+train.drop(columns = ['Name', 'Ticket', 'Cabin'], inplace = True)
+train['Sex'] = train['Sex'].apply(lambda x : 1 if x == 'female' else 0)
+train['Embarked'] = train['Embarked'].apply(lambda x : 1 if x == 'S' else 2 if x == 'C' else 3)
 
 """
 	Modelling
